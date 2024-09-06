@@ -5,7 +5,7 @@ class Board
   def initialize(state = 'clean')
     return unless state == 'clean'
 
-    @board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    @board = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
   end
 
   # Displays the current board state
@@ -20,12 +20,12 @@ class Board
     print "\n\n\n"
   end
 
-  def take_turn(player, value)
-    @board.each do |row|
-      return -1 unless row.include?(value)
-
-      row[row.index(value)] = player
+  def take_turn(player_symbol, value)
+    row_found = nil
+    @board.each_with_index do |row, index|
+      row_found = index if row.include?(value)
     end
+    @board[row_found][@board[row_found].index(value)] = player_symbol
     check_winner
   end
 

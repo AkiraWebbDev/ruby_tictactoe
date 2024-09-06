@@ -4,14 +4,14 @@
 class Player
   attr_accessor :name, :symbol, :is_bot
 
-  def initialize(name, is_bot: false)
+  def initialize(name, is_bot = false) # rubocop:disable Style/OptionalBooleanParameter
     @name = name
     @is_bot = is_bot
     if is_bot
       @symbol = 'X'
     else
       puts "Enter the symbol for #{name}"
-      @symbol = gets
+      @symbol = gets.chomp
     end
   end
 
