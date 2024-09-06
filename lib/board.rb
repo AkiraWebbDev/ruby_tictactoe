@@ -22,7 +22,9 @@ class Board
 
   def take_turn(player, value)
     @board.each do |row|
-      row[row.index(value)] = player if row.include?(value)
+      return -1 unless row.include?(value)
+
+      row[row.index(value)] = player
     end
     check_winner
   end
