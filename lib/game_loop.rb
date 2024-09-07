@@ -48,24 +48,27 @@ class Gameloop
       return if input == 'QUIT'
 
       win = player_turn(player, input)
-      while win.instance_of?(Integer.class)
-        puts "Invalid choice #{player.name}... \nPlease try again"
+      next if win == false
+      break if win == true
+
+      while win == -1
+        puts "Invalid choice #{player.name}... \nPlease try again:"
         input = gets.chomp
         win = player_turn(player, input)
       end
-      next unless win == true
-
-      input = 'QUIT'
     end
     game_over(players[current_player])
   end
 
   def game_over(player)
     @game_board.display_board
-    puts "#{player.name} WINS!!! CONGRATULATIONS!"
+    puts "\n#############################\n#{player.name} WINS!!! CONGRATULATIONS!\n#############################"
   end
 
   def player_turn(player, input)
-    @game_board.take_turn(player.symbol, input)
+    return -1 unless Array(1..9).include?(input.to_i)
+    return -1 if input.length > 1
+
+    @game_board.take_turn(player.symbol, input.to_i)
   end
 end

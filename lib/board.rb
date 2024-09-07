@@ -5,7 +5,7 @@ class Board
   def initialize(state = 'clean')
     return unless state == 'clean'
 
-    @board = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
+    @board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
   end
 
   # Displays the current board state
@@ -25,11 +25,13 @@ class Board
     @board.each_with_index do |row, index|
       row_found = index if row.include?(value)
     end
+    return -1 if row_found.nil?
+
     @board[row_found][@board[row_found].index(value)] = player_symbol
     check_winner
   end
 
-  # Checks each win condtion for the input player
+  # Checks each win condition for the input player
   def check_winner
     return true if check_row_win
 
