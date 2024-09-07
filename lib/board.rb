@@ -5,6 +5,7 @@ class Board
   def initialize(state = 'clean')
     return unless state == 'clean'
 
+    @turns = 0
     @board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
   end
 
@@ -28,6 +29,9 @@ class Board
     return -1 if row_found.nil?
 
     @board[row_found][@board[row_found].index(value)] = player_symbol
+    @turns += 1
+    return 'DRAW' if @turns == 9
+
     check_winner
   end
 

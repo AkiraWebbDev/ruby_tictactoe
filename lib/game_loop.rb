@@ -51,6 +51,11 @@ class Gameloop
       next if win == false
       break if win == true
 
+      if win == 'DRAW'
+        draw_game
+        return 0
+      end
+
       while win == -1
         puts "Invalid choice #{player.name}... \nPlease try again:"
         input = gets.chomp
@@ -58,6 +63,11 @@ class Gameloop
       end
     end
     game_over(players[current_player])
+  end
+
+  def draw_game
+    @game_board.display_board
+    puts "\n#############################\nGame was a draw! Well played!\n#############################"
   end
 
   def game_over(player)
