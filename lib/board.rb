@@ -48,6 +48,8 @@ class Board
     false
   end
 
+  private
+
   def check_row_win
     @board.each { |row| return true if row.uniq.size == 1 }
     false
