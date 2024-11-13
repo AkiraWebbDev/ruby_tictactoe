@@ -7,7 +7,7 @@ describe Board do # rubocop:disable Metrics/BlockLength
     # No test required since only accesses and prints stuff
   end
 
-  describe '#take_turn' do
+  describe '#take_turn' do # rubocop:disable Metrics/BlockLength
     subject(:board_turn) { described_class.new }
     context 'when a player passes valid input' do
       it 'puts the symbol in the correct place' do
